@@ -1,7 +1,7 @@
 body {
   font-family: Arial, sans-serif;
+  background-color: #eaf2f8;
   text-align: center;
-  background-color: #f0f8ff;
 }
 
 h1 {
@@ -11,8 +11,9 @@ h1 {
 .container {
   display: flex;
   justify-content: center;
-  gap: 50px;
-  margin-top: 30px;
+  gap: 100px;
+  margin-top: 40px;
+  position: relative;
 }
 
 .coluna {
@@ -22,15 +23,24 @@ h1 {
 }
 
 img {
-  width: 150px;
+  width: 120px;
+  cursor: pointer;
   border: 2px solid #ccc;
   border-radius: 8px;
-  cursor: grab;
 }
 
 .dropzone {
   padding: 15px;
+  background-color: #fff;
   border: 2px dashed #2c3e50;
   border-radius: 8px;
-  background-color: #ecf0f1;
+  min-width: 220px;
+}
+
+canvas#linhaCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 0;
 }
