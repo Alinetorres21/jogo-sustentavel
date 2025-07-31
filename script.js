@@ -15,7 +15,7 @@ zonas.forEach(zona => {
     const idImagem = e.dataTransfer.getData("text/plain");
     if (zona.dataset.img === idImagem) {
       zona.style.backgroundColor = "#a9dfbf";
-      feedback.textContent = "Conex„o correta! ?";
+      feedback.textContent = "Conex√£o correta! ?";
     } else {
       zona.style.backgroundColor = "#f5b7b1";
       feedback.textContent = "Ops! Tente novamente. ?";
