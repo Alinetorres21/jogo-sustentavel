@@ -1,5 +1,6 @@
 const imagens = document.querySelectorAll("img");
 const zonas = document.querySelectorAll(".dropzone");
+const container = document.querySelector(".container");
 const canvas = document.getElementById("linhaCanvas");
 const ctx = canvas.getContext("2d");
 const feedback = document.getElementById("feedback");
@@ -12,7 +13,18 @@ let imgSelecionada = null;
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-// Seleciona a imagem
+// 🔀 Embaralhar os pares no início
+function embaralharLinhas() {
+  const linhas = Array.from(container.querySelectorAll(".linha-pareada"));
+  for (let i = linhas.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [linhas[i], linhas[j]] = [linhas[j], linhas[i]];
+  }
+  linhas.forEach(linha => container.appendChild(linha));
+}
+window.addEventListener("DOMContentLoaded", embaralharLinhas);
+
+// 👈 Clique na imagem para selecionar
 imagens.forEach(img => {
   img.addEventListener("click", () => {
     if (conexoesFeitas.has(img.id)) {
@@ -26,7 +38,7 @@ imagens.forEach(img => {
   });
 });
 
-// Clica na zona de texto
+// 👉 Clique na zona de texto para conectar
 zonas.forEach(zona => {
   zona.addEventListener("click", () => {
     if (!imgSelecionada) return;
@@ -48,7 +60,7 @@ zonas.forEach(zona => {
     ctx.lineWidth = 4;
     ctx.stroke();
 
-    zona.classList.remove("correta", "incorreta"); // limpa estilos prévios
+    zona.classList.remove("correta", "incorreta");
     zona.classList.add(correta ? "correta" : "incorreta");
 
     if (correta) {
@@ -76,7 +88,7 @@ zonas.forEach(zona => {
   });
 });
 
-// Reiniciar jogo
+// 🔄 Reiniciar jogo
 function reiniciarJogo() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   conexoesFeitas.clear();
@@ -85,12 +97,15 @@ function reiniciarJogo() {
   pontuacao.textContent = "Pontos: 0 de 10";
   final.innerHTML = "";
 
+  const linhas = Array.from(container.querySelectorAll(".linha-pareada"));
+  linhas.forEach(linha => container.appendChild(linha)); // Reorganiza na ordem atual
+  embaralharLinhas(); // embaralha novamente
+
   imagens.forEach(img => {
-    img.classList.remove("selecionada");
-    document.querySelector(".container").appendChild(img); // recoloca imagem no container
+    img.classList.remove("selecionada", "usado");
+    const linha = img.closest(".linha-pareada");
+    if (linha) linha.insertBefore(img, linha.firstChild); // devolve img à esquerda
   });
 
-  zonas.forEach(zona => {
-    zona.classList.remove("correta", "incorreta");
-  });
+  zonas.forEach(zona => zona.classList.remove("correta", "incorreta"));
 }
