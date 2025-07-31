@@ -2,17 +2,28 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Regras que Salvam Vidas</title>
+  <title>Conecte as Regras que Salvam Vidas</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
       background-color: #f0f0f0;
+      margin: 20px;
       text-align: center;
     }
 
     h1 {
       margin-bottom: 10px;
+    }
+
+    #instrucoes {
+      max-width: 700px;
+      margin: 20px auto;
+      font-size: 1em;
+      background-color: #ffffff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 6px rgba(0,0,0,0.1);
+      color: #2c3e50;
     }
 
     #pontuacao {
@@ -97,9 +108,17 @@
 </head>
 <body>
   <h1>Conecte as Regras que Salvam Vidas</h1>
+
+  <div id="instrucoes">
+    <strong>Como jogar:</strong> 
+    Arraste cada imagem da esquerda para o texto correspondente à direita. 
+    A linha ficará <span style="color:#27ae60;">verde</span> se estiver correta e <span style="color:#e74c3c;">vermelha</span> se estiver incorreta. 
+    Você pode tentar novamente e precisa conectar todos os pares para vencer!
+  </div>
+
   <div id="pontuacao">Pontos: 0 de 10</div>
 
-  <div class="container">
+  <div class="container" id="container">
     <!-- Pares de regras -->
     <div class="linha-pareada">
       <img src="assets/regra1.png" class="icone" id="img1" draggable="true" ondragstart="drag(event)">
@@ -180,6 +199,7 @@
         document.getElementById("final").textContent = "🏁 Parabéns! Você conectou todas as regras com sucesso!";
       }
     }
-  </script>
-</body>
-</html>
+
+    // 🔀 Embaralhamento automático das linhas
+    function embaralharLinhas() {
+      const container = document.getElementBy
