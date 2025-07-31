@@ -1,7 +1,7 @@
 /* 🌟 Layout geral */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #eaf2f8;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #eaf2f8, #d6eaf8);
   text-align: center;
   margin: 0;
   padding: 0;
@@ -10,23 +10,24 @@ body {
 
 h1 {
   color: #2c3e50;
-  margin: 30px 15px 10px;
-  font-size: 1.8em;
+  margin: 40px 20px 10px;
+  font-size: 2em;
 }
 
+/* 🧮 Pontuação */
 #pontuacao {
   font-size: 1.2em;
   font-weight: bold;
   color: #34495e;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
-/* 🎯 Área do jogo */
+/* 🕹️ Área do jogo */
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 32px;
   padding-bottom: 60px;
   position: relative;
   max-width: 100%;
@@ -36,9 +37,9 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 400px;
+  gap: 380px;
   width: 100%;
-  max-width: 900px;
+  max-width: 920px;
   padding: 0 20px;
 }
 
@@ -48,32 +49,39 @@ h1 {
   height: 100px;
   object-fit: contain;
   cursor: pointer;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  border: 3px solid #ccddee;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   z-index: 1;
+}
+
+.icone:hover {
+  transform: scale(1.05);
 }
 
 .icone.selecionada {
   border-color: #3498db;
-  box-shadow: 0 0 10px #3498db;
+  box-shadow: 0 0 12px #3498db;
   transform: scale(1.1);
 }
 
 /* 📌 Caixa de texto */
 .dropzone {
-  width: 200px;
-  height: 120px;
+  width: 220px;
+  min-height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 15px;
-  background-color: #fff;
-  border: 2px dashed #2c3e50;
-  border-radius: 8px;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 3px dashed #2c3e50;
+  border-radius: 10px;
   font-weight: bold;
+  font-size: 1em;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
   text-align: center;
   position: relative;
   z-index: 1;
@@ -81,16 +89,17 @@ h1 {
 
 .dropzone:hover {
   background-color: #f0f8ff;
+  transform: scale(1.02);
 }
 
 /* ✨ Feedback visual de acerto/erro */
 .dropzone.correta {
-  animation: glowVerde 0.6s ease;
+  animation: glowVerde 0.6s ease forwards;
   border-color: #27ae60;
 }
 
 .dropzone.incorreta {
-  animation: piscarVermelho 0.4s ease;
+  animation: piscarVermelho 0.6s ease;
   border-color: #e74c3c;
 }
 
@@ -100,12 +109,11 @@ h1 {
 }
 
 @keyframes piscarVermelho {
-  0% { background-color: #fff; }
+  0%, 100% { background-color: #fff; }
   50% { background-color: #fdecea; }
-  100% { background-color: #fff; }
 }
 
-/* 🧵 Canvas para linha entre pares */
+/* 🧵 Canvas para linhas */
 canvas#linhaCanvas {
   position: absolute;
   top: 0;
@@ -116,29 +124,30 @@ canvas#linhaCanvas {
   height: 100%;
 }
 
-/* 💬 Feedback de status */
+/* 💬 Feedback */
 #feedback {
   font-size: 1.1em;
   margin-top: 20px;
   color: #2c3e50;
-  padding: 0 10px;
+  padding: 0 16px;
   word-break: break-word;
-  max-width: 800px;
+  max-width: 840px;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* 🟠 Botão de tentar novamente */
+/* 🟡 Botões */
 #btnTentar,
 #btnReiniciar {
   background-color: #f39c12;
   color: white;
   border: none;
-  padding: 8px 14px;
-  margin-top: 14px;
-  border-radius: 6px;
+  padding: 10px 16px;
+  margin-top: 18px;
+  border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
+  font-size: 1em;
 }
 
 #btnTentar:hover,
@@ -146,7 +155,7 @@ canvas#linhaCanvas {
   background-color: #e67e22;
 }
 
-/* ✅ Mensagem final */
+/* 🏁 Mensagem final */
 #final {
   font-size: 1.3em;
   margin-top: 30px;
@@ -154,10 +163,10 @@ canvas#linhaCanvas {
   font-weight: bold;
 }
 
-/* 📱 Estilo responsivo */
+/* 📱 Responsivo para mobile */
 @media (max-width: 768px) {
   h1 {
-    font-size: 1.5em;
+    font-size: 1.6em;
   }
 
   .linha-pareada {
@@ -174,9 +183,8 @@ canvas#linhaCanvas {
   }
 
   .dropzone {
-    width: 90%;
-    max-width: 300px;
-    height: auto;
+    width: 100%;
+    max-width: 280px;
     min-height: 100px;
     font-size: 1em;
   }
