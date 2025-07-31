@@ -20,7 +20,7 @@ h1 {
 .coluna-imagens {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
   align-items: flex-end;
 }
 
