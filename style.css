@@ -2,11 +2,14 @@ body {
   font-family: Arial, sans-serif;
   background-color: #eaf2f8;
   text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
   color: #2c3e50;
-  margin-bottom: 40px;
+  margin: 30px 15px;
+  font-size: 1.8em;
 }
 
 .container {
@@ -14,17 +17,21 @@ h1 {
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  margin-top: 20px;
+  margin: 0 auto;
+  padding-bottom: 60px;
   position: relative;
+  max-width: 100%;
 }
 
-/* Agrupa cada imagem e dropzone */
+/* Linha horizontal que contém um par imagem + dropzone */
 .linha-pareada {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 400px; /* distância visual entre as colunas */
+  gap: 400px;
   width: 100%;
+  max-width: 900px;
+  padding: 0 20px;
 }
 
 /* Imagem */
@@ -38,7 +45,6 @@ h1 {
   transition: transform 0.2s ease;
 }
 
-/* Imagem selecionada */
 .icone.selecionada {
   border-color: #3498db;
   box-shadow: 0 0 10px #3498db;
@@ -59,26 +65,31 @@ h1 {
   font-weight: bold;
   cursor: pointer;
   transition: background 0.3s ease;
+  text-align: center;
 }
 
 .dropzone:hover {
   background-color: #f0f8ff;
 }
 
-/* Canvas para desenhar linhas */
+/* Canvas para as linhas */
 canvas#linhaCanvas {
   position: absolute;
   top: 0;
   left: 0;
   pointer-events: none;
   z-index: 0;
+  width: 100%;
+  height: 100%;
 }
 
 /* Feedback visual */
 #feedback {
-  font-size: 1.2em;
+  font-size: 1.1em;
   margin-top: 20px;
   color: #2c3e50;
+  padding: 0 10px;
+  word-break: break-word;
 }
 
 /* Botão de tentar novamente */
@@ -94,4 +105,35 @@ canvas#linhaCanvas {
 
 #btnTentar:hover {
   background-color: #e67e22;
+}
+
+/* 📱 Estilo responsivo para telas menores */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5em;
+  }
+
+  .linha-pareada {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    max-width: 100%;
+  }
+
+  .icone {
+    width: 80px;
+    height: 80px;
+  }
+
+  .dropzone {
+    width: 90%;
+    max-width: 300px;
+    height: auto;
+    min-height: 100px;
+    font-size: 1em;
+  }
+
+  #feedback {
+    font-size: 1em;
+  }
 }
