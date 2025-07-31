@@ -23,7 +23,7 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 200px; /* distância visual entre as colunas */
+  gap: 400px; /* distância visual entre as colunas */
   width: 100%;
 }
 
@@ -39,7 +39,7 @@ h1 {
 
 /* Caixa de texto */
 .dropzone {
-  width: 220px;
+  width: 200px;
   height: 120px;
   display: flex;
   align-items: center;
