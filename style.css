@@ -2,6 +2,7 @@ body {
   font-family: Arial, sans-serif;
   background-color: #eaf2f8;
   text-align: center;
+  padding: 0 20px; /* margem lateral para mobile */
 }
 
 h1 {
@@ -27,6 +28,7 @@ img {
   cursor: pointer;
   border: 2px solid #ccc;
   border-radius: 8px;
+  margin: 10px 0; /* facilita o toque no mobile */
 }
 
 .dropzone {
@@ -37,10 +39,34 @@ img {
   min-width: 220px;
 }
 
+/* Canvas mantido fixo no topo */
 canvas#linhaCanvas {
   position: absolute;
   top: 0;
   left: 0;
   pointer-events: none;
   z-index: 0;
+}
+
+/* RESPONSIVO PARA TELAS MENORES */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .coluna {
+    width: 100%;
+    align-items: center;
+  }
+
+  img {
+    width: 80px;
+  }
+
+  .dropzone {
+    width: 80%;
+    min-width: auto;
+  }
 }
