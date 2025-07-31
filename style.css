@@ -35,6 +35,14 @@ h1 {
   cursor: pointer;
   border: 2px solid #ccc;
   border-radius: 8px;
+  transition: transform 0.2s ease;
+}
+
+/* Imagem selecionada */
+.icone.selecionada {
+  border-color: #3498db;
+  box-shadow: 0 0 10px #3498db;
+  transform: scale(1.1);
 }
 
 /* Caixa de texto */
@@ -49,13 +57,41 @@ h1 {
   border: 2px dashed #2c3e50;
   border-radius: 8px;
   font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-/* Canvas */
+.dropzone:hover {
+  background-color: #f0f8ff;
+}
+
+/* Canvas para desenhar linhas */
 canvas#linhaCanvas {
   position: absolute;
   top: 0;
   left: 0;
   pointer-events: none;
   z-index: 0;
+}
+
+/* Feedback visual */
+#feedback {
+  font-size: 1.2em;
+  margin-top: 20px;
+  color: #2c3e50;
+}
+
+/* Botão de tentar novamente */
+#btnTentar {
+  background-color: #f39c12;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  margin-top: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#btnTentar:hover {
+  background-color: #e67e22;
 }
