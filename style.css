@@ -9,31 +9,48 @@ h1 {
   color: #2c3e50;
 }
 
-/* Novo agrupamento de imagem + dropzone */
-.par-regra {
+/* Container com colunas lado a lado */
+.container {
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 20px;
-  margin-bottom: 20px;
+  gap: 60px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+  position: relative;
 }
 
-.par-regra img {
+/* Coluna de imagens */
+.coluna-imagens {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.coluna-imagens img {
   width: 120px;
   cursor: pointer;
   border: 2px solid #ccc;
   border-radius: 8px;
 }
 
-.par-regra .dropzone {
+/* Coluna de textos (dropzones) */
+.coluna-textos {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dropzone {
   padding: 15px;
   background-color: #fff;
   border: 2px dashed #2c3e50;
   border-radius: 8px;
   min-width: 220px;
+  text-align: center;
+  font-weight: bold;
 }
 
-/* Mantém o canvas fixo */
+/* Canvas para linhas */
 canvas#linhaCanvas {
   position: absolute;
   top: 0;
@@ -42,33 +59,19 @@ canvas#linhaCanvas {
   z-index: 0;
 }
 
-/* Container principal pode continuar centralizado */
-.container {
-  display: flex;
-  justify-content: center;
-  margin-top: 40px;
-  position: relative;
-}
-
-.coluna {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-/* Responsivo para mobile */
+/* Responsivo para telas menores */
 @media (max-width: 768px) {
-  .par-regra {
+  .container {
     flex-direction: column;
-    gap: 10px;
     align-items: center;
+    gap: 40px;
   }
 
-  .par-regra img {
+  .coluna-imagens img {
     width: 80px;
   }
 
-  .par-regra .dropzone {
+  .dropzone {
     width: 80%;
   }
 }
