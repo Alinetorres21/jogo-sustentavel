@@ -1,0 +1,36 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f0f8ff;
+}
+
+h1 {
+  color: #2c3e50;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 30px;
+}
+
+.coluna {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+img {
+  width: 150px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  cursor: grab;
+}
+
+.dropzone {
+  padding: 15px;
+  border: 2px dashed #2c3e50;
+  border-radius: 8px;
+  background-color: #ecf0f1;
+}

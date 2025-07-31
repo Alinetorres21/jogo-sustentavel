@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Regras que Salvam Vidas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Conecte as Regras que Salvam Vidas</h1>
+  <div class="container">
+    <div class="coluna imagens">
+      <img src="assets/regra1.png" id="img1" draggable="true">
+      <img src="assets/regra2.png" id="img2" draggable="true">
+      <img src="assets/regra3.png" id="img3" draggable="true">
+    </div>
+    <div class="coluna frases">
+      <div class="dropzone" data-img="img1">Use cinto de segurança</div>
+      <div class="dropzone" data-img="img2">Não use celular ao dirigir</div>
+      <div class="dropzone" data-img="img3">Respeite limites de velocidade</div>
+    </div>
+  </div>
+  <p id="feedback"></p>
+  <script src="script.js"></script>
+</body>
+</html>
