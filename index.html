@@ -3,7 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <title>Regras que Salvam Vidas</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f0f0f0;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 30px;
+    }
+
+    .coluna-imagens, .coluna-textos {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .coluna-imagens img {
+      width: 120px;
+      height: auto;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .dropzone {
+      background-color: #fff;
+      padding: 10px;
+      border: 2px dashed #999;
+      border-radius: 6px;
+      min-height: 50px;
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+    }
+
+    #linhaCanvas {
+      display: block;
+      margin: 40px auto;
+      border: 1px solid #ccc;
+    }
+
+    #feedback {
+      text-align: center;
+      font-style: italic;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
   <h1>Conecte as Regras que Salvam Vidas</h1>
@@ -38,8 +91,8 @@
     </div>
   </div>
 
-  <canvas id="linhaCanvas"></canvas>
-  <p id="feedback"></p>
+  <canvas id="linhaCanvas" width="800" height="400"></canvas>
+  <p id="feedback">Arraste as imagens para o texto correspondente e veja se acerta!</p>
 
   <script src="script.js"></script>
 </body>
