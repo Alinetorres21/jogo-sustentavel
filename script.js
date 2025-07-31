@@ -3,6 +3,8 @@ const zonas = document.querySelectorAll(".dropzone");
 const canvas = document.getElementById("linhaCanvas");
 const ctx = canvas.getContext("2d");
 const feedback = document.getElementById("feedback");
+const pontuacao = document.getElementById("pontuacao");
+const final = document.getElementById("final");
 
 let conexoesFeitas = new Set();
 let imgSelecionada = null;
@@ -46,9 +48,18 @@ zonas.forEach(zona => {
     ctx.lineWidth = 4;
     ctx.stroke();
 
+    zona.classList.remove("correta", "incorreta"); // limpa estilos prévios
+    zona.classList.add(correta ? "correta" : "incorreta");
+
     if (correta) {
       feedback.textContent = "🎉 Conexão correta!";
       conexoesFeitas.add(imgSelecionada.id);
+      pontuacao.textContent = `Pontos: ${conexoesFeitas.size} de 10`;
+
+      if (conexoesFeitas.size === 10) {
+        final.innerHTML = `🏁 Parabéns! Você conectou todas as regras com sucesso!<br><button id="btnReiniciar">🔄 Jogar novamente</button>`;
+        document.getElementById("btnReiniciar").addEventListener("click", reiniciarJogo);
+      }
     } else {
       feedback.innerHTML = `❌ Conexão incorreta. <button id="btnTentar">Tentar novamente</button>`;
       document.getElementById("btnTentar").addEventListener("click", () => {
@@ -56,6 +67,7 @@ zonas.forEach(zona => {
         imgSelecionada.classList.remove("selecionada");
         imgSelecionada = null;
         feedback.textContent = "🔁 Tente novamente!";
+        zona.classList.remove("incorreta");
       });
     }
 
@@ -63,3 +75,22 @@ zonas.forEach(zona => {
     imgSelecionada = null;
   });
 });
+
+// Reiniciar jogo
+function reiniciarJogo() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  conexoesFeitas.clear();
+  imgSelecionada = null;
+  feedback.textContent = "🔁 Novo jogo iniciado!";
+  pontuacao.textContent = "Pontos: 0 de 10";
+  final.innerHTML = "";
+
+  imagens.forEach(img => {
+    img.classList.remove("selecionada");
+    document.querySelector(".container").appendChild(img); // recoloca imagem no container
+  });
+
+  zonas.forEach(zona => {
+    zona.classList.remove("correta", "incorreta");
+  });
+}
