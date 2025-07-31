@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Jogo Sustentável</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Jogo da Sustentabilidade ??</h1>
+  <button onclick="coletarLixo()">Coletar Lixo</button>
+  <p id="pontuacao">Pontuação: 0</p>
+  <script src="script.js"></script>
+</body>
+</html>
