@@ -7,35 +7,6 @@ const feedback = document.getElementById("feedback");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let pontuacao = 0;
-
-// Embaralhar elementos ao iniciar
-function embaralharElementos() {
-  const containerImgs = document.getElementById("container-imgs");
-  const containerZonas = document.getElementById("container-zonas");
-
-  const imagensArray = Array.from(containerImgs.children);
-  const zonasArray = Array.from(containerZonas.children);
-
-  imagensArray.sort(() => Math.random() - 0.5);
-  zonasArray.sort(() => Math.random() - 0.5);
-
-  imagensArray.forEach(img => containerImgs.appendChild(img));
-  zonasArray.forEach(zona => containerZonas.appendChild(zona));
-}
-
-embaralharElementos();
-
-// Função de confetes
-function lançarConfetes() {
-  confetti({
-    particleCount: 150,
-    spread: 100,
-    origin: { y: 0.6 }
-  });
-}
-
-// Seleção de imagem
 imagens.forEach(img => {
   img.addEventListener("click", () => {
     imagens.forEach(i => i.classList.remove("selecionada"));
@@ -43,7 +14,6 @@ imagens.forEach(img => {
   });
 });
 
-// Verificação e conexão
 zonas.forEach(zona => {
   zona.addEventListener("click", () => {
     const imgSelecionada = document.querySelector(".selecionada");
@@ -63,27 +33,15 @@ zonas.forEach(zona => {
 
     if (zona.dataset.img === imgSelecionada.id) {
       ctx.strokeStyle = "#27ae60"; // verde
-      pontuacao++;
-      feedback.textContent = `✅ Conexão correta! Pontuação: ${pontuacao}/10`;
-
-      if (pontuacao === 10) {
-        feedback.textContent = "🎊 Você dominou as Regras que Salvam Vidas! 🛡️ Pontuação final: 10/10";
-        lançarConfetes();
-
-        setTimeout(() => {
-          pontuacao = 0;
-          embaralharElementos();
-          feedback.textContent = "🔁 Jogo reiniciado! Tente novamente!";
-        }, 5000);
-      }
-
+      feedback.textContent = "✅ Conexão correta!";
     } else {
       ctx.strokeStyle = "#e74c3c"; // vermelho
-      feedback.textContent = `❌ Tente novamente. Pontuação: ${pontuacao}/10`;
+      feedback.textContent = "❌ Tente novamente.";
     }
 
     ctx.lineWidth = 3;
     ctx.stroke();
+
     imgSelecionada.classList.remove("selecionada");
   });
 });
