@@ -13,7 +13,7 @@ let imgSelecionada = null;
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-// ?? Embaralhar os pares no início
+// 🔁 Embaralhar os pares no início
 function embaralharLinhas() {
   const linhas = Array.from(container.querySelectorAll(".linha-pareada"));
   for (let i = linhas.length - 1; i > 0; i--) {
@@ -24,22 +24,22 @@ function embaralharLinhas() {
 }
 window.addEventListener("DOMContentLoaded", embaralharLinhas);
 
-// ?? Clique na imagem para selecionar
+// 🎯 Clique na imagem para selecionar
 imagens.forEach(img => {
   img.addEventListener("click", () => {
     if (conexoesFeitas.has(img.id)) {
-      feedback.textContent = "?? Esta imagem já foi conectada.";
+      feedback.textContent = "🚫 Esta imagem já foi conectada.";
       return;
     }
 
     imgSelecionada = img;
     imagens.forEach(i => i.classList.remove("selecionada"));
     img.classList.add("selecionada");
-    feedback.textContent = "?? Agora clique no texto correspondente.";
+    feedback.textContent = "👉 Agora clique no texto correspondente.";
   });
 });
 
-// ?? Clique na zona de texto para conectar
+// 🔗 Clique na zona de texto para conectar
 zonas.forEach(zona => {
   zona.addEventListener("click", () => {
     if (!imgSelecionada || conexoesFeitas.has(imgSelecionada.id)) return;
@@ -66,9 +66,10 @@ zonas.forEach(zona => {
     zona.classList.add(correta ? "correta" : "incorreta");
 
     if (correta) {
-      feedback.textContent = "?? Conexão correta!";
+      feedback.textContent = "✅ Conexão correta!";
       conexoesFeitas.add(imgSelecionada.id);
       imgSelecionada.classList.add("usado");
+      imgSelecionada.setAttribute("draggable", "false"); // 👍 Bloquear uso posterior
       pontuacao.textContent = `Pontos: ${conexoesFeitas.size} de 10`;
 
       // Inserir imagem dentro da zona após conexão correta
@@ -77,17 +78,27 @@ zonas.forEach(zona => {
       }
 
       if (conexoesFeitas.size === 10) {
-        final.innerHTML = `?? Parabéns! Você conectou todas as regras com sucesso!<br><button id="btnReiniciar">?? Jogar novamente</button>`;
+        // 🎉 Confete de celebração
+        if (typeof confetti === "function") {
+          confetti({
+            particleCount: 150,
+            spread: 70,
+            origin: { y: 0.6 },
+          });
+        }
+        final.innerHTML = `🎉 Parabéns! Você conectou todas as regras com sucesso!<br><button id="btnReiniciar">🔁 Jogar novamente</button>`;
+        final.classList.add("mostrar"); // 🌟 Animação final
         document.getElementById("btnReiniciar").addEventListener("click", reiniciarJogo);
       }
     } else {
-      feedback.innerHTML = `? Conexão incorreta. <button id="btnTentar">Tentar novamente</button>`;
+      feedback.innerHTML = `❌ Conexão incorreta. <button id="btnTentar">Tentar novamente</button>`;
       document.getElementById("btnTentar").addEventListener("click", () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         imgSelecionada.classList.remove("selecionada");
         imgSelecionada = null;
-        feedback.textContent = "?? Tente novamente!";
+        feedback.textContent = "🔄 Tente novamente!";
         zona.classList.remove("incorreta");
+        zona.style.border = "2px dashed #999"; // 🎨 Reset visual
       });
     }
 
@@ -96,14 +107,15 @@ zonas.forEach(zona => {
   });
 });
 
-// ?? Reiniciar jogo
+// 🔄 Reiniciar jogo
 function reiniciarJogo() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   conexoesFeitas.clear();
   imgSelecionada = null;
-  feedback.textContent = "?? Novo jogo iniciado!";
+  feedback.textContent = "🚀 Novo jogo iniciado!";
   pontuacao.textContent = "Pontos: 0 de 10";
   final.innerHTML = "";
+  final.classList.remove("mostrar");
 
   const linhas = Array.from(container.querySelectorAll(".linha-pareada"));
   linhas.forEach(linha => container.appendChild(linha));
@@ -111,11 +123,15 @@ function reiniciarJogo() {
 
   imagens.forEach(img => {
     img.classList.remove("selecionada", "usado");
+    img.removeAttribute("draggable"); // 🧼 Reset de atributo
     const linha = img.closest(".linha-pareada");
     if (linha && !linha.contains(img)) {
       linha.insertBefore(img, linha.firstChild);
     }
   });
 
-  zonas.forEach(zona => zona.classList.remove("correta", "incorreta"));
+  zonas.forEach(zona => {
+    zona.classList.remove("correta", "incorreta");
+    zona.style.border = ""; // 🧼 Remover estilização extra
+  });
 }
