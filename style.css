@@ -22,7 +22,9 @@ h1 {
 .linha-pareada {
   display: flex;
   align-items: center;
-  gap: 200px; /* espaço entre imagem e texto */
+  justify-content: space-between;
+  gap: 200px; /* distância visual entre as colunas */
+  width: 100%;
 }
 
 /* Imagem */
