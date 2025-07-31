@@ -9,48 +9,53 @@ h1 {
   color: #2c3e50;
 }
 
-/* Container com colunas lado a lado */
+/* Container com bastante espaço entre colunas */
 .container {
   display: flex;
   justify-content: center;
-  gap: 60px;
+  align-items: flex-start;
+  gap: 200px; /* espaço entre colunas para linhas visíveis */
   margin-top: 40px;
-  flex-wrap: wrap;
   position: relative;
+  flex-wrap: wrap;
 }
 
-/* Coluna de imagens */
-.coluna-imagens {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.coluna-imagens img {
-  width: 120px;
-  cursor: pointer;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-}
-
-/* Coluna de textos (dropzones) */
+/* Coluna de textos à esquerda */
 .coluna-textos {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  align-items: flex-end; /* alinha texto à esquerda do container */
 }
 
+/* Coluna de imagens à direita */
+.coluna-imagens {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start; /* alinha imagem à direita do container */
+}
+
+/* Dropzones com aparência destacada */
 .dropzone {
   padding: 15px;
   background-color: #fff;
   border: 2px dashed #2c3e50;
   border-radius: 8px;
   min-width: 220px;
-  text-align: center;
+  text-align: right; /* alinhamento à esquerda visualmente */
   font-weight: bold;
 }
 
-/* Canvas para linhas */
+/* Imagens proporcionais e elegantes */
+.coluna-imagens img {
+  width: 100px;
+  cursor: pointer;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+}
+
+/* Canvas permanece atrás dos elementos */
 canvas#linhaCanvas {
   position: absolute;
   top: 0;
@@ -59,7 +64,7 @@ canvas#linhaCanvas {
   z-index: 0;
 }
 
-/* Responsivo para telas menores */
+/* Responsivo para celular */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
@@ -67,11 +72,17 @@ canvas#linhaCanvas {
     gap: 40px;
   }
 
-  .coluna-imagens img {
-    width: 80px;
+  .coluna-textos,
+  .coluna-imagens {
+    align-items: center;
   }
 
   .dropzone {
     width: 80%;
+    text-align: center;
+  }
+
+  .coluna-imagens img {
+    width: 80px;
   }
 }
