@@ -1,28 +1,17 @@
-/* 🌟 Layout geral */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   background: linear-gradient(to right, #eaf2f8, #d6eaf8);
   text-align: center;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
 }
 
 h1 {
-  color: #2c3e50;
   margin: 40px 20px 10px;
   font-size: 2em;
+  color: #2c3e50;
 }
 
-/* 🧮 Pontuação */
-#pontuacao {
-  font-size: 1.2em;
-  font-weight: bold;
-  color: #34495e;
-  margin-bottom: 24px;
-}
-
-/* 🕹️ Área do jogo */
 .container {
   display: flex;
   flex-direction: column;
@@ -30,20 +19,18 @@ h1 {
   gap: 32px;
   padding-bottom: 60px;
   position: relative;
-  max-width: 100%;
 }
 
 .linha-pareada {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 380px;
+  align-items: center;
+  gap: 80px;
   width: 100%;
-  max-width: 920px;
+  max-width: 960px;
   padding: 0 20px;
 }
 
-/* 🖼️ Imagem */
 .icone {
   width: 100px;
   height: 100px;
@@ -51,10 +38,8 @@ h1 {
   cursor: pointer;
   border: 3px solid #ccddee;
   border-radius: 10px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  z-index: 1;
+  background: #fff;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .icone:hover {
@@ -67,40 +52,38 @@ h1 {
   transform: scale(1.1);
 }
 
-/* 📌 Caixa de texto */
 .dropzone {
-  width: 220px;
+  width: 200px;
   min-height: 120px;
+  border: 3px dashed #2c3e50;
+  border-radius: 10px;
+  background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  background-color: #ffffff;
-  border: 3px dashed #2c3e50;
-  border-radius: 10px;
   font-weight: bold;
   font-size: 1em;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
   text-align: center;
+  transition: background-color 0.3s;
   position: relative;
-  z-index: 1;
 }
 
-.dropzone:hover {
-  background-color: #f0f8ff;
-  transform: scale(1.02);
+.dropzone img {
+  width: 80px;
+  height: 80px;
+  display: block;
+  margin: auto;
+  object-fit: contain;
 }
 
-/* ✨ Feedback visual de acerto/erro */
 .dropzone.correta {
-  animation: glowVerde 0.6s ease forwards;
   border-color: #27ae60;
+  animation: glowVerde 0.6s ease;
 }
 
 .dropzone.incorreta {
-  animation: piscarVermelho 0.6s ease;
   border-color: #e74c3c;
+  animation: piscarVermelho 0.6s ease;
 }
 
 @keyframes glowVerde {
@@ -109,53 +92,22 @@ h1 {
 }
 
 @keyframes piscarVermelho {
-  0%, 100% { background-color: #fff; }
-  50% { background-color: #fdecea; }
+  0%, 100% { background: #fff; }
+  50% { background: #fdecea; }
 }
 
-/* 🧵 Canvas para linhas */
-canvas#linhaCanvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
+#pontuacao {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #34495e;
 }
 
-/* 💬 Feedback */
 #feedback {
-  font-size: 1.1em;
   margin-top: 20px;
   color: #2c3e50;
-  padding: 0 16px;
-  word-break: break-word;
-  max-width: 840px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
-/* 🟡 Botões */
-#btnTentar,
-#btnReiniciar {
-  background-color: #f39c12;
-  color: white;
-  border: none;
-  padding: 10px 16px;
-  margin-top: 18px;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 1em;
-}
-
-#btnTentar:hover,
-#btnReiniciar:hover {
-  background-color: #e67e22;
-}
-
-/* 🏁 Mensagem final */
 #final {
   font-size: 1.3em;
   margin-top: 30px;
@@ -163,37 +115,17 @@ canvas#linhaCanvas {
   font-weight: bold;
 }
 
-/* 📱 Responsivo para mobile */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 1.6em;
-  }
+#btnReiniciar {
+  margin-top: 20px;
+  padding: 10px 16px;
+  background: #f39c12;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
-  .linha-pareada {
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-    max-width: 100%;
-    padding: 0 10px;
-  }
-
-  .icone {
-    width: 80px;
-    height: 80px;
-  }
-
-  .dropzone {
-    width: 100%;
-    max-width: 280px;
-    min-height: 100px;
-    font-size: 1em;
-  }
-
-  #feedback {
-    font-size: 1em;
-  }
-
-  #pontuacao {
-    font-size: 1.1em;
-  }
+#btnReiniciar:hover {
+  background: #e67e22;
 }
