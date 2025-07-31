@@ -7,40 +7,37 @@
 </head>
 <body>
   <h1>Conecte as Regras que Salvam Vidas</h1>
+  <div class="container">
+    <div class="coluna imagens">
+      <img src="assets/regra1.png" id="img1">
+      <img src="assets/regra2.png" id="img2">
+      <img src="assets/regra3.png" id="img3">
+      <img src="assets/regra4.png" id="img4">
+      <img src="assets/regra5.png" id="img5">
+      <img src="assets/regra6.png" id="img6">
+      <img src="assets/regra7.png" id="img7">
+      <img src="assets/regra8.png" id="img8">
+      <img src="assets/regra9.png" id="img9">
+      <img src="assets/regra10.png" id="img10">
+    </div>
 
-  <div id="container-imgs" class="container">
-    <img src="assets/regra3.png" id="img3" class="img">
-    <img src="assets/regra1.png" id="img1" class="img">
-    <img src="assets/regra5.png" id="img5" class="img">
-    <img src="assets/regra2.png" id="img2" class="img">
-    <img src="assets/regra10.png" id="img10" class="img">
-    <img src="assets/regra4.png" id="img4" class="img">
-    <img src="assets/regra6.png" id="img6" class="img">
-    <img src="assets/regra9.png" id="img9" class="img">
-    <img src="assets/regra8.png" id="img8" class="img">
-    <img src="assets/regra7.png" id="img7" class="img">
-  </div>
-
-  <div id="container-zonas" class="container">
-    <div class="zona" data-img="img3">Desativar os controles de segurança</div>
-    <div class="zona" data-img="img1">Segurança na direção</div>
-    <div class="zona" data-img="img5">Máquinas e equipamentos agrícolas</div>
-    <div class="zona" data-img="img2">Preparação para tarefas perigosas</div>
-    <div class="zona" data-img="img10">Manuseio de produtos químicos perigosos</div>
-    <div class="zona" data-img="img4">Isolamento de energia</div>
-    <div class="zona" data-img="img6">Espaço confinado</div>
-    <div class="zona" data-img="img9">Trabalho em altura</div>
-    <div class="zona" data-img="img8">Elevação mecânica</div>
-    <div class="zona" data-img="img7">Trabalho a quente</div>
+    <div class="coluna frases">
+      <div class="dropzone" data-img="img1">Segurança na direção</div>
+      <div class="dropzone" data-img="img2">Preparação para tarefas perigosas</div>
+      <div class="dropzone" data-img="img3">Desativar os controles de segurança</div>
+      <div class="dropzone" data-img="img4">Isolamento de energia</div>
+      <div class="dropzone" data-img="img5">Máquinas e equipamentos agrícolas</div>
+      <div class="dropzone" data-img="img6">Espaço confinado</div>
+      <div class="dropzone" data-img="img7">Trabalho a quente</div>
+      <div class="dropzone" data-img="img8">Elevação mecânica</div>
+      <div class="dropzone" data-img="img9">Trabalho em altura</div>
+      <div class="dropzone" data-img="img10">Manuseio de produtos químicos perigosos</div>
+    </div>
   </div>
 
   <canvas id="linhaCanvas"></canvas>
   <p id="feedback"></p>
 
-  <!-- Lib de Confete -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.min.js"></script>
-
-  <!-- Script principal -->
   <script src="script.js"></script>
 </body>
 </html>
