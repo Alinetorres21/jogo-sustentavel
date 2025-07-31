@@ -8,41 +8,47 @@
       font-family: Arial, sans-serif;
       margin: 20px;
       background-color: #f0f0f0;
+      text-align: center;
     }
 
     h1 {
-      text-align: center;
+      margin-bottom: 30px;
     }
 
     .container {
       display: flex;
-      justify-content: center;
-      gap: 40px;
-      margin-top: 30px;
-    }
-
-    .coluna-imagens, .coluna-textos {
-      display: flex;
       flex-direction: column;
+      align-items: center;
       gap: 20px;
     }
 
-    .coluna-imagens img {
+    .linha-pareada {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .icone {
       width: 120px;
-      height: auto;
+      height: 120px;
+      object-fit: contain;
       border: 2px solid #ccc;
       border-radius: 8px;
+      cursor: pointer;
     }
 
     .dropzone {
+      width: 280px;
+      height: 120px;
       background-color: #fff;
-      padding: 10px;
+      padding: 15px;
       border: 2px dashed #999;
-      border-radius: 6px;
-      min-height: 50px;
+      border-radius: 8px;
       display: flex;
       align-items: center;
+      justify-content: center;
       font-weight: bold;
+      text-align: center;
     }
 
     #linhaCanvas {
@@ -52,7 +58,6 @@
     }
 
     #feedback {
-      text-align: center;
       font-style: italic;
       margin-top: 20px;
     }
@@ -62,31 +67,44 @@
   <h1>Conecte as Regras que Salvam Vidas</h1>
 
   <div class="container">
-    <!-- Coluna de imagens à esquerda -->
-    <div class="coluna-imagens">
-      <img src="assets/regra1.png" id="img1">
-      <img src="assets/regra2.png" id="img2">
-      <img src="assets/regra3.png" id="img3">
-      <img src="assets/regra4.png" id="img4">
-      <img src="assets/regra5.png" id="img5">
-      <img src="assets/regra6.png" id="img6">
-      <img src="assets/regra7.png" id="img7">
-      <img src="assets/regra8.png" id="img8">
-      <img src="assets/regra9.png" id="img9">
-      <img src="assets/regra10.png" id="img10">
-    </div>
-
-    <!-- Coluna de frases à direita -->
-    <div class="coluna-textos">
+    <div class="linha-pareada">
+      <img src="assets/regra1.png" class="icone" id="img1">
       <div class="dropzone" data-img="img1">Segurança na direção</div>
+    </div>
+    <div class="linha-pareada">
+      <img src="assets/regra2.png" class="icone" id="img2">
       <div class="dropzone" data-img="img2">Preparação para tarefas perigosas</div>
+    </div>
+    <div class="linha-pareada">
+      <img src="assets/regra3.png" class="icone" id="img3">
       <div class="dropzone" data-img="img3">Desativar os controles de segurança</div>
+    </div>
+    <div class="linha-pareada">
+      <img src="assets/regra4.png" class="icone" id="img4">
       <div class="dropzone" data-img="img4">Isolamento de energia</div>
+    </div>
+    <div class="linha-pareada">
+      <img src="assets/regra5.png" class="icone" id="img5">
       <div class="dropzone" data-img="img5">Máquinas e equipamentos agrícolas</div>
+    </div>
+    <div class="linha-pareada">
+      <img src="assets/regra6.png" class="icone" id="img6">
       <div class="dropzone" data-img="img6">Espaço confinado</div>
+    </div>
+    <div class="linha-pareada">
+      <img src="assets/regra7.png" class="icone" id="img7">
       <div class="dropzone" data-img="img7">Trabalho a quente</div>
+    </div>
+    <div class="linha-pareada">
+      <img src="assets/regra8.png" class="icone" id="img8">
       <div class="dropzone" data-img="img8">Elevação mecânica</div>
+    </div>
+    <div class="linha-pareada">
+      <img src="assets/regra9.png" class="icone" id="img9">
       <div class="dropzone" data-img="img9">Trabalho em altura</div>
+    </div>
+    <div class="linha-pareada">
+      <img src="assets/regra10.png" class="icone" id="img10">
       <div class="dropzone" data-img="img10">Manuseio de produtos químicos perigosos</div>
     </div>
   </div>
