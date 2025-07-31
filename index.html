@@ -4,28 +4,179 @@
   <meta charset="UTF-8">
   <title>Conecte as Regras que Salvam Vidas</title>
   <style>
-    /* ... (seu CSS original permanece aqui) ... */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    #instrucoes {
+      margin: 10px 0;
+      font-weight: bold;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .linha-pareada {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 40px;
+      padding: 10px;
+      border-bottom: 1px dashed #ccc;
+    }
+
+    img {
+      width: 80px;
+      height: 80px;
+      cursor: grab;
+    }
+
+    .dropzone {
+      flex: 1;
+      padding: 12px;
+      border: 2px dashed #999;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      background-color: #fff;
+    }
+
+    .dropzone.correta {
+      background-color: #d4f8e5;
+      border-color: #27ae60;
+    }
+
+    .dropzone.incorreta {
+      background-color: #f8dada;
+      border-color: #e74c3c;
+    }
+
+    #feedback, #pontuacao, #final {
+      margin: 15px 0;
+      text-align: center;
+      font-size: 1.1em;
+    }
+
+    #final.mostrar {
+      animation: fadeFinal 0.8s ease forwards;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+
+    @keyframes fadeFinal {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
-  <!-- 🎉 Biblioteca de confete adicionada -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
 <body>
+
   <h1>Conecte as Regras que Salvam Vidas</h1>
 
   <div id="instrucoes">
-    <strong>Como jogar:</strong> 
-    Arraste cada imagem da esquerda para o texto correspondente à direita. 
-    A linha ficará <span style="color:#27ae60;">verde</span> se estiver correta e <span style="color:#e74c3c;">vermelha</span> se estiver incorreta. 
+    <strong>Como jogar:</strong><br>
+    Arraste cada imagem da esquerda para o texto correspondente à direita.<br>
+    A linha ficará <span style="color:#27ae60;">verde</span> se estiver correta e <span style="color:#e74c3c;">vermelha</span> se estiver incorreta.<br>
     Você pode tentar novamente e precisa conectar todos os pares para vencer!
   </div>
 
   <div id="pontuacao">Pontos: 0 de 10</div>
 
   <div class="container" id="container">
-    <!-- ... (suas linhas pareadas com imagens e dropzones intactas) ... -->
+    <!-- 🔁 10 pares interativos -->
+    <div class="linha-pareada">
+      <img src="img/regra1.png" id="img1" draggable="true" ondragstart="drag(event)">
+      <div class="dropzone" data-img="img1" ondrop="drop(event)" ondragover="allowDrop(event)">
+        Use equipamentos de proteção adequados
+      </div>
+    </div>
+
+    <div class="linha-pareada">
+      <img src="img/regra2.png" id="img2" draggable="true" ondragstart="drag(event)">
+      <div class="dropzone" data-img="img2" ondrop="drop(event)" ondragover="allowDrop(event)">
+        Sinalize áreas perigosas
+      </div>
+    </div>
+
+    <div class="linha-pareada">
+      <img src="img/regra3.png" id="img3" draggable="true" ondragstart="drag(event)">
+      <div class="dropzone" data-img="img3" ondrop="drop(event)" ondragover="allowDrop(event)">
+        Evite comportamentos de risco
+      </div>
+    </div>
+
+    <div class="linha-pareada">
+      <img src="img/regra4.png" id="img4" draggable="true" ondragstart="drag(event)">
+      <div class="dropzone" data-img="img4" ondrop="drop(event)" ondragover="allowDrop(event)">
+        Respeite os limites de velocidade
+      </div>
+    </div>
+
+    <div class="linha-pareada">
+      <img src="img/regra5.png" id="img5" draggable="true" ondragstart="drag(event)">
+      <div class="dropzone" data-img="img5" ondrop="drop(event)" ondragover="allowDrop(event)">
+        Faça pausas regulares durante o turno
+      </div>
+    </div>
+
+    <div class="linha-pareada">
+      <img src="img/regra6.png" id="img6" draggable="true" ondragstart="drag(event)">
+      <div class="dropzone" data-img="img6" ondrop="drop(event)" ondragover="allowDrop(event)">
+        Mantenha o local de trabalho limpo e organizado
+      </div>
+    </div>
+
+    <div class="linha-pareada">
+      <img src="img/regra7.png" id="img7" draggable="true" ondragstart="drag(event)">
+      <div class="dropzone" data-img="img7" ondrop="drop(event)" ondragover="allowDrop(event)">
+        Não opere máquinas sem treinamento
+      </div>
+    </div>
+
+    <div class="linha-pareada">
+      <img src="img/regra8.png" id="img8" draggable="true" ondragstart="drag(event)">
+      <div class="dropzone" data-img="img8" ondrop="drop(event)" ondragover="allowDrop(event)">
+        Reporte incidentes imediatamente
+      </div>
+    </div>
+
+    <div class="linha-pareada">
+      <img src="img/regra9.png" id="img9" draggable="true" ondragstart="drag(event)">
+      <div class="dropzone" data-img="img9" ondrop="drop(event)" ondragover="allowDrop(event)">
+        Cumpra os procedimentos de segurança
+      </div>
+    </div>
+
+    <div class="linha-pareada">
+      <img src="img/regra10.png" id="img10" draggable="true" ondragstart="drag(event)">
+      <div class="dropzone" data-img="img10" ondrop="drop(event)" ondragover="allowDrop(event)">
+        Cuide da sua saúde mental
+      </div>
+    </div>
   </div>
 
   <canvas id="linhaCanvas" width="800" height="400"></canvas>
+
   <p id="feedback">Arraste as imagens para o texto correspondente e veja se acerta!</p>
 
   <div id="final"></div>
@@ -69,20 +220,20 @@
 
       if (pontos === 10) {
         const final = document.getElementById("final");
-        final.textContent = "🎉 Parabéns! Você conectou todas as regras com sucesso!";
-        final.style.opacity = "1";
+        final.innerHTML = "🎉 Parabéns! Você conectou todas as regras com sucesso!<br><button onclick='reiniciar()'>🔁 Jogar novamente</button>";
+        final.classList.add("mostrar");
 
         confetti({
           particleCount: 200,
           spread: 70,
           origin: { y: 0.6 },
         });
-
-        setTimeout(() => {
-          alert("Agora que dominou as regras, que tal aplicar essas ideias no seu ambiente de trabalho? 💡🏢");
-        }, 1000);
       }
+    }
+
+    function reiniciar() {
+      location.reload();
     }
   </script>
 </body>
-</html>
+</html
