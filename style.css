@@ -16,23 +16,33 @@ h1 {
   position: relative;
 }
 
-.coluna {
+/* Coluna de imagens */
+.coluna-imagens {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  align-items: flex-end;
+}
+
+/* Coluna de textos (ou dropzones) */
+.coluna-textos {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
 }
 
 img {
   width: 120px;
-  height: 100px; /* altura padronizada */
-  object-fit: contain; /* mantém proporção sem distorcer */
+  height: 100px;
+  object-fit: contain;
   cursor: pointer;
   border: 2px solid #ccc;
   border-radius: 8px;
 }
 
 .dropzone {
-  height: 100px; /* mesma altura da imagem */
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
