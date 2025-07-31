@@ -2,37 +2,204 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jogo de Pareamento</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Conecte as Regras que Salvam Vidas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    #instrucoes {
+      max-width: 700px;
+      margin: 20px auto;
+      font-size: 1em;
+      background-color: #ffffff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 6px rgba(0,0,0,0.1);
+      color: #2c3e50;
+    }
+
+    #pontuacao {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .linha-pareada {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .icone {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      cursor: grab;
+    }
+
+    .dropzone {
+      width: 280px;
+      height: 120px;
+      background-color: #fff;
+      padding: 15px;
+      border: 2px dashed #999;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .correta {
+      animation: glowVerde 0.6s ease;
+    }
+
+    .incorreta {
+      animation: piscarVermelho 0.4s ease;
+    }
+
+    @keyframes glowVerde {
+      0% { box-shadow: 0 0 0px #27ae60; }
+      100% { box-shadow: 0 0 10px #27ae60; }
+    }
+
+    @keyframes piscarVermelho {
+      0% { background-color: #fff; }
+      50% { background-color: #f8d7da; }
+      100% { background-color: #fff; }
+    }
+
+    #linhaCanvas {
+      display: block;
+      margin: 40px auto;
+      border: 1px solid #ccc;
+    }
+
+    #feedback {
+      font-style: italic;
+      margin-top: 20px;
+    }
+
+    #final {
+      font-size: 1.4em;
+      font-weight: bold;
+      margin-top: 30px;
+      color: #27ae60;
+    }
+  </style>
 </head>
 <body>
+  <h1>Conecte as Regras que Salvam Vidas</h1>
 
-  <h1>Conecte as Regras</h1>
+  <div id="instrucoes">
+    <strong>Como jogar:</strong> 
+    Arraste cada imagem da esquerda para o texto correspondente à direita. 
+    A linha ficará <span style="color:#27ae60;">verde</span> se estiver correta e <span style="color:#e74c3c;">vermelha</span> se estiver incorreta. 
+    Você pode tentar novamente e precisa conectar todos os pares para vencer!
+  </div>
+
   <div id="pontuacao">Pontos: 0 de 10</div>
 
-  <div class="container" id="jogo">
-    <canvas id="linhaCanvas"></canvas>
-
-    <!-- Linha de pareamento -->
+  <div class="container" id="container">
+    <!-- Pares de regras -->
     <div class="linha-pareada">
-      <!-- Imagens -->
-      <img src="img1.png" class="icone" id="img1" draggable="true" data-img="txt1">
-      <img src="img2.png" class="icone" id="img2" draggable="true" data-img="txt2">
-      <img src="img3.png" class="icone" id="img3" draggable="true" data-img="txt3">
-      <!-- ... adicione mais se quiser -->
-      
-      <!-- Zonas -->
-      <div class="dropzone" data-img="img1">Texto 1</div>
-      <div class="dropzone" data-img="img2">Texto 2</div>
-      <div class="dropzone" data-img="img3">Texto 3</div>
+      <img src="assets/regra1.png" class="icone" id="img1" draggable="true" ondragstart="drag(event)">
+      <div class="dropzone" data-img="img1" ondragover="allowDrop(event)" ondrop="drop(event)">Segurança na direção</div>
+    </div>
+    <div class="linha-pareada">
+      <img src="assets/regra2.png" class="icone" id="img2" draggable="true" ondragstart="drag(event)">
+      <div class="dropzone" data-img="img2" ondragover="allowDrop(event)" ondrop="drop(event)">Preparação para tarefas perigosas</div>
+    </div>
+    <div class="linha-pareada">
+      <img src="assets/regra3.png" class="icone" id="img3" draggable="true" ondragstart="drag(event)">
+      <div class="dropzone" data-img="img3" ondragover="allowDrop(event)" ondrop="drop(event)">Desativar os controles de segurança</div>
+    </div>
+    <div class="linha-pareada">
+      <img src="assets/regra4.png" class="icone" id="img4" draggable="true" ondragstart="drag(event)">
+      <div class="dropzone" data-img="img4" ondragover="allowDrop(event)" ondrop="drop(event)">Isolamento de energia</div>
+    </div>
+    <div class="linha-pareada">
+      <img src="assets/regra5.png" class="icone" id="img5" draggable="true" ondragstart="drag(event)">
+      <div class="dropzone" data-img="img5" ondragover="allowDrop(event)" ondrop="drop(event)">Máquinas e equipamentos agrícolas</div>
+    </div>
+    <div class="linha-pareada">
+      <img src="assets/regra6.png" class="icone" id="img6" draggable="true" ondragstart="drag(event)">
+      <div class="dropzone" data-img="img6" ondragover="allowDrop(event)" ondrop="drop(event)">Espaço confinado</div>
+    </div>
+    <div class="linha-pareada">
+      <img src="assets/regra7.png" class="icone" id="img7" draggable="true" ondragstart="drag(event)">
+      <div class="dropzone" data-img="img7" ondragover="allowDrop(event)" ondrop="drop(event)">Trabalho a quente</div>
+    </div>
+    <div class="linha-pareada">
+      <img src="assets/regra8.png" class="icone" id="img8" draggable="true" ondragstart="drag(event)">
+      <div class="dropzone" data-img="img8" ondragover="allowDrop(event)" ondrop="drop(event)">Elevação mecânica</div>
+    </div>
+    <div class="linha-pareada">
+      <img src="assets/regra9.png" class="icone" id="img9" draggable="true" ondragstart="drag(event)">
+      <div class="dropzone" data-img="img9" ondragover="allowDrop(event)" ondrop="drop(event)">Trabalho em altura</div>
+    </div>
+    <div class="linha-pareada">
+      <img src="assets/regra10.png" class="icone" id="img10" draggable="true" ondragstart="drag(event)">
+      <div class="dropzone" data-img="img10" ondragover="allowDrop(event)" ondrop="drop(event)">Manuseio de produtos químicos perigosos</div>
     </div>
   </div>
 
-  <div id="feedback"></div>
-  <button id="btnReiniciar">🔄 Reiniciar</button>
+  <canvas id="linhaCanvas" width="800" height="400"></canvas>
+  <p id="feedback">Arraste as imagens para o texto correspondente e veja se acerta!</p>
   <div id="final"></div>
 
-  <script src="script.js"></script>
-</body>
-</html>
+  <script>
+    let pontos = 0;
+
+    function allowDrop(ev) {
+      ev.preventDefault();
+    }
+
+    function drag(ev) {
+      ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev) {
+      ev.preventDefault();
+      const data = ev.dataTransfer.getData("text");
+      const zona = ev.target;
+      const esperado = zona.getAttribute("data-img");
+
+      if (data === esperado && !document.getElementById(data).classList.contains("usado")) {
+        zona.classList.add("correta");
+        zona.appendChild(document.getElementById(data));
+        document.getElementById(data).classList.add("usado");
+        pontos++;
+        document.getElementById("pontuacao").textContent = `Pontos: ${pontos} de 10`;
+        setTimeout(() => zona.classList.remove("correta"), 800);
+      } else {
+        zona.classList.add("incorreta");
+        setTimeout(() => zona.classList.remove("incorreta"), 400);
+      }
+
+      if (pontos === 10) {
+        document.getElementById("final").textContent = "?? Parabéns! Você conectou todas as regras com sucesso!";
+      }
+    }
+
+    // ?? Embaralhamento automático das linhas
+    function embaralharLinhas() {
+      const container = document.getElementBy
