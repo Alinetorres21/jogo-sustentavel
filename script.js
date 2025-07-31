@@ -31,6 +31,7 @@ imagens.forEach(img => {
       feedback.textContent = "🔒 Esta imagem já foi conectada.";
       return;
     }
+
     imgSelecionada = img;
     imagens.forEach(i => i.classList.remove("selecionada"));
     img.classList.add("selecionada");
@@ -41,10 +42,11 @@ imagens.forEach(img => {
 // 👉 Clique na zona de texto para conectar
 zonas.forEach(zona => {
   zona.addEventListener("click", () => {
-    if (!imgSelecionada) return;
+    if (!imgSelecionada || conexoesFeitas.has(imgSelecionada.id)) return;
 
     const imgRect = imgSelecionada.getBoundingClientRect();
     const zonaRect = zona.getBoundingClientRect();
+
     const x1 = imgRect.right;
     const y1 = imgRect.top + imgRect.height / 2;
     const x2 = zonaRect.left;
@@ -66,7 +68,13 @@ zonas.forEach(zona => {
     if (correta) {
       feedback.textContent = "🎉 Conexão correta!";
       conexoesFeitas.add(imgSelecionada.id);
+      imgSelecionada.classList.add("usado");
       pontuacao.textContent = `Pontos: ${conexoesFeitas.size} de 10`;
+
+      // Inserir imagem dentro da zona após conexão correta
+      if (!zona.contains(imgSelecionada)) {
+        zona.appendChild(imgSelecionada);
+      }
 
       if (conexoesFeitas.size === 10) {
         final.innerHTML = `🏁 Parabéns! Você conectou todas as regras com sucesso!<br><button id="btnReiniciar">🔄 Jogar novamente</button>`;
@@ -98,13 +106,15 @@ function reiniciarJogo() {
   final.innerHTML = "";
 
   const linhas = Array.from(container.querySelectorAll(".linha-pareada"));
-  linhas.forEach(linha => container.appendChild(linha)); // Reorganiza na ordem atual
-  embaralharLinhas(); // embaralha novamente
+  linhas.forEach(linha => container.appendChild(linha));
+  embaralharLinhas();
 
   imagens.forEach(img => {
     img.classList.remove("selecionada", "usado");
     const linha = img.closest(".linha-pareada");
-    if (linha) linha.insertBefore(img, linha.firstChild); // devolve img à esquerda
+    if (linha && !linha.contains(img)) {
+      linha.insertBefore(img, linha.firstChild);
+    }
   });
 
   zonas.forEach(zona => zona.classList.remove("correta", "incorreta"));
